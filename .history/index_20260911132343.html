@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <header class="search-section">
+            <div class="brand">
+                <span class="logo-icon">🌤️</span>
+                <h2>Skyline.io</h2>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button id="location-btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; padding: 12px; cursor: pointer; font-family: inherit; font-size: 0.9rem; transition: background 0.2s;">📍 Use Location</button>
+                
+                <div class="search-bar">
+                    <input type="text" id="city-input" placeholder="Search global climate..." autocomplete="off">
+                    <button id="search-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                </div>
+                
+                <button id="unit-toggle" style="background: var(--accent); border: none; border-radius: 10px; color: #0f172a; font-weight: bold; padding: 12px 16px; cursor: pointer; font-family: inherit;">°C</button>
+            </div>
+        </header>
+        
+        <div id="loading" class="status-msg hidden">
+            <div class="spinner"></div>
+            <p>Syncing meteorological data...</p>
+        </div>
+        <div id="error-message" class="status-msg error hidden">
+            <span>⚠️</span>
+            <p>City non-existent or network dropped. Refine spelling.</p>
+        </div>
+        
+        <main id="dashboard-content" class="hidden">
+            <div class="main-grid">
+                <section class="hero-weather-card">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-info">
+                        <h1 id="city-name">San Francisco</h1>
+                        <p id="local-time">Local Time: --:--</p>
+                        <div class="temperature-block">
+                            <span id="temperature">72</span><span class="degree-sym">°C</span>
+                        </div>
+                        <div class="condition-badge">
+                            <img id="weather-icon" src="" alt="Condition icon">
+                            <span id="weather-desc">Scattered Clouds</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="metrics-grid">
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="icon">💧</span>
+                            <h4>Humidity</h4>
+                        </div>
+                        <div class="widget-value" id="humidity">--%</div>
+                        <p class="widget-hint">Atmospheric vapor level</p>
+                    </div>
+
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="icon">💨</span>
+                            <h4>Wind Velocity</h4>
+                        </div>
+                        <div class="widget-value" id="wind">-- km/h</div>
+                        <p class="widget-hint">Current horizontal drafts</p>
+                    </div>
+
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="icon">☀️</span>
+                            <h4>UV Radiation</h4>
+                        </div>
+                        <div class="widget-value" id="uv-index">-</div>
+                        <p class="widget-hint">Solar ultraviolet intensity</p>
+                    </div>
+
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="icon">👁️</span>
+                            <h4>Visibility</h4>
+                        </div>
+                        <div class="widget-value" id="visibility">-- km</div>
+                        <p class="widget-hint">Clear horizon index</p>
+                    </div>
+                </section>
+            </div>
+            
+            <section class="forecast-section">
+                <h3>3-Day Extended Outlook</h3>
+                <div id="forecast-container" class="forecast-grid">
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
