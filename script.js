@@ -34,7 +34,6 @@ function parseSearchIntent() {
     const targetQuery = cityInput.value.trim();
     if (targetQuery) fetchDashboardData(targetQuery);
 }
-
 async function fetchDashboardData(query) {
     dashboardContent.classList.add('hidden');
     errorMessage.classList.add('hidden');
@@ -42,6 +41,7 @@ async function fetchDashboardData(query) {
 
     try {
         const response = await fetch(`https://weatherapi.com{API_KEY}&q=${query}&days=3&aqi=no`);
+        
         if (!response.ok) throw new Error('Resource failure');
 
         currentWeatherData = await response.json();
