@@ -5,7 +5,6 @@
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --accent: #38bdf8;
-    
     --bg-image: url('https://unsplash.com');
 }
 
@@ -108,7 +107,7 @@ body {
     color: #0f172a;
 }
 
-.main-grid {
+#dashboard-content {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 2rem;
@@ -236,63 +235,6 @@ body {
     color: var(--text-muted);
 }
 
-.forecast-section {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--glass-border);
-}
-
-.forecast-section h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: var(--text-main);
-}
-
-.forecast-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.forecast-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.forecast-card .day {
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.forecast-card .date {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-
-.forecast-card img {
-    width: 48px;
-    height: 48px;
-}
-
-.forecast-card .temps {
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.forecast-card .desc {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: capitalize;
-}
-
 .status-msg {
     text-align: center;
     padding: 4rem 2rem;
@@ -303,8 +245,13 @@ body {
     margin-top: 1rem;
 }
 
-.error span { font-size: 2.5rem; }
-.error p { color: #f87171 !important; }
+.error span {
+    font-size: 2.5rem;
+}
+
+.error p {
+    color: #f87171 !important;
+}
 
 .spinner {
     width: 40px;
@@ -324,10 +271,7 @@ body {
 .hidden { display: none !important; }
 
 @media (max-width: 768px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-    .forecast-grid {
+    #dashboard-content {
         grid-template-columns: 1fr;
     }
     .search-section {
