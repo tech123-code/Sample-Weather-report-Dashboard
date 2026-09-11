@@ -41,8 +41,11 @@ async function fetchDashboardData(query) {
     loadingState.classList.remove('hidden');
 
     try {
-        const response = await fetch(`https://weatherapi.com{API_KEY}&q=${query}&days=3&aqi=no`);
-        if (!response.ok) throw new Error('Resource failure');
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no`);
+        
+        if (!response.ok) {
+            throw new Error('API Resource Failure');
+        }
 
         currentWeatherData = await response.json();
         renderDashboard();
@@ -91,12 +94,12 @@ function renderDashboard() {
         temperature.textContent = Math.round(data.current.temp_c);
         degreeSym.textContent = '°C';
         wind.textContent = `${data.current.wind_kph} km/h`;
-        visibility.textContent = `${data.current.vis_km} km`; 
+        visibility.textContent = `${data.current.vis_km} km`;
     } else {
         temperature.textContent = Math.round(data.current.temp_f);
         degreeSym.textContent = '°F';
         wind.textContent = `${data.current.wind_mph} mph`;
-        visibility.textContent = `${data.current.vis_miles} miles`; 
+        visibility.textContent = `${data.current.vis_miles} miles`;
     }
 
     evaluateVisualTheming(data.current.condition.text.toLowerCase());
