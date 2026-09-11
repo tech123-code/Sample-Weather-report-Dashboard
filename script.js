@@ -132,16 +132,18 @@ function renderForecast(forecastDays) {
 
 function evaluateVisualTheming(conditionStr) {
     let backgroundUrl = '';
+    
     if (conditionStr.includes('sunny') || conditionStr.includes('clear')) {
         backgroundUrl = "url('https://unsplash.com')";
-    } else if (conditionStr.includes('rain') || conditionStr.includes('drizzle') || conditionStr.includes('shower')) {
+    } else if (conditionStr.includes('rain') || conditionStr.includes('drizzle') || conditionStr.includes('shower') || conditionStr.includes('thunderstorm')) {
         backgroundUrl = "url('https://unsplash.com')";
-    } else if (conditionStr.includes('snow') || conditionStr.includes('blizzard') || conditionStr.includes('ice')) {
+    } else if (conditionStr.includes('snow') || conditionStr.includes('blizzard') || conditionStr.includes('ice') || conditionStr.includes('sleet')) {
         backgroundUrl = "url('https://unsplash.com')";
     } else if (conditionStr.includes('cloud') || conditionStr.includes('overcast') || conditionStr.includes('mist') || conditionStr.includes('fog')) {
         backgroundUrl = "url('https://unsplash.com')";
     } else {
         backgroundUrl = "url('https://unsplash.com')";
     }
+    
     document.documentElement.style.setProperty('--bg-image', backgroundUrl);
 }
