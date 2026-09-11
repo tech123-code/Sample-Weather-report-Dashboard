@@ -41,8 +41,7 @@ async function fetchDashboardData(query) {
     loadingState.classList.remove('hidden');
 
     try {
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no`);
-        
+        const response = await fetch(`https://weatherapi.com{API_KEY}&q=${query}&days=3&aqi=no`);
         if (!response.ok) throw new Error('Resource failure');
 
         currentWeatherData = await response.json();
@@ -60,10 +59,10 @@ function getUserLocation() {
                 const query = `${position.coords.latitude},${position.coords.longitude}`;
                 fetchDashboardData(query);
             },
-            () => { fetchDashboardData('London'); }
+            () => { fetchDashboardData('Pune'); }
         );
     } else {
-        fetchDashboardData('London');
+        fetchDashboardData('Pune');
     }
 }
 
@@ -80,14 +79,14 @@ function renderDashboard() {
     dashboardContent.classList.remove('hidden');
 
     const data = currentWeatherData;
-   
+    
     cityName.textContent = `${data.location.name}, ${data.location.country}`;
     localTime.textContent = `Local Time: ${data.location.localtime}`;
     weatherDesc.textContent = data.current.condition.text;
     weatherIcon.src = `https:${data.current.condition.icon}`;
     humidity.textContent = `${data.current.humidity}%`;
     uvIndex.textContent = data.current.uv;
-    
+
     if (isMetric) {
         temperature.textContent = Math.round(data.current.temp_c);
         degreeSym.textContent = '°C';
@@ -99,6 +98,7 @@ function renderDashboard() {
         wind.textContent = `${data.current.wind_mph} mph`;
         visibility.textContent = `${data.current.vis_miles} miles`; 
     }
+
     evaluateVisualTheming(data.current.condition.text.toLowerCase());
     renderForecast(data.forecast.forecastday);
 }
@@ -132,16 +132,18 @@ function renderForecast(forecastDays) {
 
 function evaluateVisualTheming(conditionStr) {
     let backgroundUrl = '';
+    
     if (conditionStr.includes('sunny') || conditionStr.includes('clear')) {
         backgroundUrl = "url('https://unsplash.com')";
-    } else if (conditionStr.includes('rain') || conditionStr.includes('drizzle') || conditionStr.includes('shower')) {
+    } else if (conditionStr.includes('rain') || conditionStr.includes('drizzle') || conditionStr.includes('shower') || conditionStr.includes('thunderstorm')) {
         backgroundUrl = "url('https://unsplash.com')";
-    } else if (conditionStr.includes('snow') || conditionStr.includes('blizzard') || conditionStr.includes('ice')) {
+    } else if (conditionStr.includes('snow') || conditionStr.includes('blizzard') || conditionStr.includes('ice') || conditionStr.includes('sleet')) {
         backgroundUrl = "url('https://unsplash.com')";
     } else if (conditionStr.includes('cloud') || conditionStr.includes('overcast') || conditionStr.includes('mist') || conditionStr.includes('fog')) {
         backgroundUrl = "url('https://unsplash.com')";
     } else {
         backgroundUrl = "url('https://unsplash.com')";
     }
+    
     document.documentElement.style.setProperty('--bg-image', backgroundUrl);
 }
