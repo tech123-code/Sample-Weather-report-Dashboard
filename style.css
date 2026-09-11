@@ -5,6 +5,8 @@
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --accent: #38bdf8;
+    
+   
     --bg-image: url('https://unsplash.com');
 }
 
@@ -111,10 +113,10 @@ body {
 
 .main-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin-top: 2rem;
-    flex: 1; 
+    flex: 1;
 }
 
 .hero-weather-card {

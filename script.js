@@ -86,7 +86,7 @@ function renderDashboard() {
     weatherIcon.src = `https:${data.current.condition.icon}`;
     humidity.textContent = `${data.current.humidity}%`;
     uvIndex.textContent = data.current.uv;
-
+    
     if (isMetric) {
         temperature.textContent = Math.round(data.current.temp_c);
         degreeSym.textContent = '°C';
@@ -132,18 +132,16 @@ function renderForecast(forecastDays) {
 
 function evaluateVisualTheming(conditionStr) {
     let backgroundUrl = '';
-    
     if (conditionStr.includes('sunny') || conditionStr.includes('clear')) {
         backgroundUrl = "url('https://unsplash.com')";
-    } else if (conditionStr.includes('rain') || conditionStr.includes('drizzle') || conditionStr.includes('shower') || conditionStr.includes('thunderstorm')) {
+    } else if (conditionStr.includes('rain') || conditionStr.includes('drizzle') || conditionStr.includes('shower')) {
         backgroundUrl = "url('https://unsplash.com')";
-    } else if (conditionStr.includes('snow') || conditionStr.includes('blizzard') || conditionStr.includes('ice') || conditionStr.includes('sleet')) {
+    } else if (conditionStr.includes('snow') || conditionStr.includes('blizzard') || conditionStr.includes('ice')) {
         backgroundUrl = "url('https://unsplash.com')";
     } else if (conditionStr.includes('cloud') || conditionStr.includes('overcast') || conditionStr.includes('mist') || conditionStr.includes('fog')) {
         backgroundUrl = "url('https://unsplash.com')";
     } else {
         backgroundUrl = "url('https://unsplash.com')";
     }
-    
     document.documentElement.style.setProperty('--bg-image', backgroundUrl);
 }
