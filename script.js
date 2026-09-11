@@ -87,19 +87,18 @@ function renderDashboard() {
     weatherIcon.src = `https:${data.current.condition.icon}`;
     humidity.textContent = `${data.current.humidity}%`;
     uvIndex.textContent = data.current.uv;
-
+    
     if (isMetric) {
         temperature.textContent = Math.round(data.current.temp_c);
         degreeSym.textContent = '°C';
         wind.textContent = `${data.current.wind_kph} km/h`;
-        visibility.textContent = `${data.current.visibility_km} km`;
+        visibility.textContent = `${data.current.vis_km} km`; 
     } else {
         temperature.textContent = Math.round(data.current.temp_f);
         degreeSym.textContent = '°F';
         wind.textContent = `${data.current.wind_mph} mph`;
-        visibility.textContent = `${data.current.visibility_miles} miles`;
+        visibility.textContent = `${data.current.vis_miles} miles`; 
     }
-
     evaluateVisualTheming(data.current.condition.text.toLowerCase());
     renderForecast(data.forecast.forecastday);
 }
